@@ -26,11 +26,10 @@ protected:
 	DECLARE_INTERFACE_MAP()
 public:
 
-//	CString defense_value;
+
 	CSliderCtrl defense_;
 	CSliderCtrl threepoints_;
 	CEdit defense_show_;
-
 
 
 
