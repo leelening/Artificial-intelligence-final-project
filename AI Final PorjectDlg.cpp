@@ -71,6 +71,7 @@ BEGIN_MESSAGE_MAP(CAIFinalPorjectDlg, CDialogEx)
 	ON_COMMAND(ID_PLAYER_DELETE, deleteplayerfunc)
 	ON_COMMAND(ID_TACTICS_ADD, addtacticsfunc)
 	ON_COMMAND(ID_TACTICS_DELETE, deletetaticsfunc)
+	ON_BN_CLICKED(IDC_BUTTON2, &CAIFinalPorjectDlg::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 
@@ -184,3 +185,15 @@ HCURSOR CAIFinalPorjectDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CAIFinalPorjectDlg::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	PGmind.run();
+	SGmind.run();
+	SFmind.run();
+	PFmind.run();
+	Cmind.run();
+
+}

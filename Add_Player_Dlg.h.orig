@@ -27,10 +27,10 @@ protected:
 public:
 
 
+
 	CSliderCtrl defense_;
 	CSliderCtrl threepoints_;
 	CEdit defense_show_;
-
 
 
 
@@ -51,5 +51,6 @@ public:
 	afx_msg void OnNMCustomdrawSlider7(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider8(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider9(NMHDR *pNMHDR, LRESULT *pResult);
+//	CListBox playerslist_;
 	CListCtrl playerslist_;
 };

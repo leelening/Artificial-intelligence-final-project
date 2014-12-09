@@ -114,6 +114,87 @@ public:
 	{
 		weight[i] = changedweight;
 	}
+
+	void train()
+	{
+	
+	}
+
+
+
+	void run()
+	{
+
+
+		if (inputlayer_.holdball == 1)
+		{
+			nextballpositionx = outlayer_.balldestinationx;
+			nextballpositiony = outlayer_.balldestinationy;
+			nextmethod = outlayer_.method;
+			switch (inputlayer_.selfposition)
+			{
+			case 1:
+				{
+				PGnextx = outlayer_.peopledestinationx;
+				PGnexty = outlayer_.peopledestinationy;
+				break;
+				}
+			case 2:
+				{
+				SGnextx = outlayer_.peopledestinationx;
+				SGnexty = outlayer_.peopledestinationy;
+				break;
+				}
+			case 3:
+				{
+				SFnextx = outlayer_.peopledestinationx;
+				SFnexty = outlayer_.peopledestinationy;
+				break;
+				}
+			case 4:
+				{
+				PFnextx = outlayer_.peopledestinationx;
+				PFnexty = outlayer_.peopledestinationy;
+				break;
+				}
+			case 5:
+				{
+				Cnextx = outlayer_.peopledestinationx;
+				Cnexty = outlayer_.peopledestinationy;
+				break;
+				}
+			default:
+				break;
+			}
+		}
+	}
+
 };
 
 
+
+
+//程序的全局变量
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+neuronsnetwork PGmind;
+neuronsnetwork SGmind;
+neuronsnetwork SFmind;
+neuronsnetwork PFmind;
+neuronsnetwork Cmind;
+
+int PGnextx;
+int PGnexty;
+int SGnextx;
+int SGnexty;
+int SFnextx;
+int SFnexty;
+int PFnextx;
+int PFnexty;
+int Cnextx;
+int Cnexty;
+
+int nextmethod;
+
+int nextballpositionx;
+int nextballpositiony;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
