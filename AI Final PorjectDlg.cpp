@@ -10,6 +10,7 @@
 #include "Delete_Player_Dlg.h"
 #include "Add_Tactics_Dlg.h"
 #include "Delete_Tactics_Dlg.h"
+#include "network.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
