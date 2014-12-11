@@ -5,6 +5,7 @@
 using namespace std;
 
 #define LINE 1024
+#define alpha 1
 
 
 int PGnextx;
@@ -156,73 +157,94 @@ float gprime(float x)
 
 void neuronsnetwork::train()
 {
-	//for (int i = 0;i<numnodes;i = i + 1)
-	//	for( int q = 0;q<inputsize;q = q +1)
-	//		{weight[i][q] = rand()%6;}
+	for (int i = 0;i<3;i = i + 1)
+	{
+		node[i].weight1 = rand()%6;
+		node[i].weight2 = rand()%6;
+		node[i].outputweight = rand()%6;
+	}
+	float in_ [3];//the size of the hiddenlayer
+	float a[2];
 
-	//float in_ [numnodes];
-	//float a[inputsize];
+	for (int m = 0;m<datasize;m=m+1)       //# Propagate the inputs forward to compute the outputs
+	{
+		a[0] = exmaple[m].input1;
+		a[1] = example[m].input2;
+		float b[3];		
+		float suma = 0;
+		float deltai[3];
+		for(int j = 0;j<3;j=j+1)// # for the layer 2
+		{
+			in_[j] = node[j].weight1 * a[0] + node[j].weight2 * a[1];
+			b[j]=in_[j];
+		}
+		for (int p = 0;p<3;p=p+1)
+		{
+			suma = suma + b[p] * node[p].outputweight;
+		}
+		float newa = g(suma);
+		float deltaj = gprime(suma) * (examples[m].value - newa);
+		for (int k=0;k<3;k=k+1)
+			deltai[k]=gprime(in_[k])*(node[k].outputweight * deltaj);
 
-	//for (int m = 0;m<datasize;m=m+1)       //# Propagate the inputs forward to compute the outputs
-	//{
-	//	for(int z = 0;z<inputsize;z=z+1)
-	//	{
-	//		a[z] = input[z];
-	//	}		
-	//	float b[numnodes];
-	//	float suma = 0;
-	//	float deltai = [numnodes];
-	//	for(int j = 0;j<numnodes;j=j+1)// # for the layer 2
-	//	{
-	//		in_[j ]= 0;
-	//		for (int k = 0;k<inputsize;k=k+1)
-	//			{
-	//				in_[j] = in_[j] + weight[j][k] * a[k];
-	//			}
-	//		b[j]=in_[j];
-	//		
-	//	for (int p = 0;p<numnodes;p=p+1)
-	//	{
-	//		suma = suma + b[p] * outoutweight[p]
-	//	}
-	//	float newa = g(suma);
-	//	float deltaj = gprime(suma) * (examples[m].value - newa);
-	//	for (int k=0;k<numnodes;k=k+1)
-	//		deltai[k]=gprime(in_[k])*(weight[k].weightOutput * deltaj);
-
-	//	for (int c = 0;c<numnodes;c = c + 1)
-	//	{
-	//		for (int b = 0;c<inputsize;b = b+1)
-	//		network.hidden[c].weightX = network.hidden[c].weightX + alpha * a[0] * deltai[c];
-	//		network.hidden[c].weightY = network.hidden[c].weightY + alpha *	a[1] * deltai[c];
-	//		outputweight[c] = outputweight[c] + b[c] * deltaj;
-	//	}
-	//}
+		for (int c = 0;c<3;c = c + 1)
+		{
+			node[c].weight1 = node[c].weight1 + alpha * a[0] * deltai[c];
+			node[c].weight2 = node[c].weight2 + alpha *	a[1] * deltai[c];
+			node[c].outputweight = node[c].outputweight + b[c] * deltaj;
+		}
+	}
 }
 
+int neuronsnetwork::judge(float number)
+{
+	if (number < 0.5)
+		return 0 ;
+	else
+	{
+		return 1;
+	}
+}
 
 
 void neuronsnetwork::run()
 {
-	/*a = [None] * 2
-	in_ = [None] * (len(network.hidden))
-	b = [None] * (len(network.hidden))
-	error = 0
-	for i in range(len(testdata)):
-		suma = 0
-		a[0] = float(testdata[i].x)
-		a[1] = float(testdata[i].y)
-		label = float(testdata[i].value)
-		for j in range(len(network.hidden)): # for the layer 2
-			in_[j] = a[0] * network.hidden[j].weightX + a[1] * network.hidden[j].weightY
-			b[j] = g(in_[j])
-		for m in range(len(b)): # for the layer 3
-			suma = suma + b[m] * network.hidden[m].weightOutput
-		newa = g(suma)
-		newlabel = judge (newa)
-		if newlabel != label:
-			error = error + 1*/
+	float a[2];
+	float in_[3];
+	float b[3];
 
+	for(int i=0;i<len(testdata);i++)
+	{
+		float suma = 0;
+		a[0] = float(testdata[i].x);
+		a[1] = float(testdata[i].y);
+		float label = float(testdata[i].value);
+
+		for(int j = 0;j < 3;j++)						//# for the layer 2
+		{
+			in_[j] = a[0] * node[j].weight1 + a[1] * node[j].weight2;
+			b[j] = g(in_[j]);
+		}
+		for(int m;m<3;m++)
+		{
+			suma = suma + b[m] * node[m].outputweight;
+		}
+		float newa = g(suma);
+		int newlabel = judge (newa);
+		switch(newlabel)
+		{
+		case 0:
+			// output pass
+			break;
+		case 1:
+			// output shoot
+			break;
+		default:
+			// no action
+			break;
+		}
+	}
+/*
 	if (inputlayer_.holdball == 1)
 	{
 		nextballpositionx = outlayer_.balldestinationx;
@@ -263,5 +285,5 @@ void neuronsnetwork::run()
 		default:
 			break;
 		}
-	}
+	}*/
 }

@@ -96,7 +96,7 @@ public:
 	int datasize;
 	//float weight[numnodes][inputsize];
 	//float outputweight[numnodes];
-	hiddennode node[1024];
+	hiddennode node[2];
 
 protected:
 	FILE *fp;
@@ -112,6 +112,8 @@ public:
 
 
 	void hidenlayeraddnode(float newweight);
+
+	int judge(float number);
 
 
 	void changeweight(float changedweight, int i);
