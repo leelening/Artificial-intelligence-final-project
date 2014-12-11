@@ -24,7 +24,10 @@ protected:
 	HICON m_hIcon;
 
 	// 生成的消息映射函数
+
+public:
 	virtual BOOL OnInitDialog();
+protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
