@@ -74,6 +74,9 @@
     <ClCompile Include="Delete_Tactics_Dlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="network.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AI Final Porject.rc">

@@ -17,6 +17,16 @@
 #endif
 
 
+neuronsnetwork PGmind;
+neuronsnetwork SGmind;
+neuronsnetwork SFmind;
+neuronsnetwork PFmind;
+neuronsnetwork Cmind;
+
+
+
+
+
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
 class CAboutDlg : public CDialogEx
@@ -190,10 +200,10 @@ HCURSOR CAIFinalPorjectDlg::OnQueryDragIcon()
 void CAIFinalPorjectDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	PGmind.run();
+/*	PGmind.run();
 	SGmind.run();
 	SFmind.run();
 	PFmind.run();
 	Cmind.run();
-
+	*/
 }
