@@ -35,6 +35,9 @@ public:
 											// SF = 3
 											// PF = 4
 											// C  = 5
+	int ownx[1000];
+	int owny[1000];
+
 
 	int PGx;
 	int PGy;
@@ -93,7 +96,7 @@ public:
 	int datasize;
 	//float weight[numnodes][inputsize];
 	//float outputweight[numnodes];
-	hiddennode node[10];
+	hiddennode node[1024];
 
 protected:
 	FILE *fp;
@@ -116,7 +119,6 @@ public:
 	void train();
 
 	void scaleinputsize();
-
 
 	void run();
 	

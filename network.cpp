@@ -27,6 +27,10 @@ int nextmethod;
 int nextballpositionx;
 int nextballpositiony;
 
+
+
+
+
 inputlayer::inputlayer()
 {
 }
@@ -66,17 +70,25 @@ void neuronsnetwork::readfile(char *filename)
 		}
 	}
 	datasize = i - 1;
-	int j;
-	int temp[256];
-	int m =0;
-	for(j = 0; j<i; j++)
-        if(isdigit(data[0][j]))
-		{
-			temp[m] = int(data[0][j])-48;
-			m++;
-		}
-	inputsize = i -1;
+	
+	
+	for (int n= 0;n<datasize;n++)
+	{
+		int m =0;
+		int temp[256];
+		for(int j = 0; j<24; j++)
+			if(isdigit(data[0][j]))
+			{
+				temp[m] = int(data[n][j])-48;
+				m++;
+			}
+		inputsize = i -1;
+		inputlayer_.ownx[n] = temp[2];
+		inputlayer_.owny[n] = temp[3];
+	}
 	outFile.close();
+
+	
 
 	//char *buf,*p;
 	//char *data[LINE];
