@@ -28,7 +28,15 @@ void Add_Tactics_Dlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(Add_Tactics_Dlg, CDialogEx)
+	ON_BN_CLICKED(IDOK, &Add_Tactics_Dlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
 // Add_Tactics_Dlg 消息处理程序
+
+
+void Add_Tactics_Dlg::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	//CDialogEx::OnOK();
+}

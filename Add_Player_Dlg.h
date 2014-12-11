@@ -33,7 +33,7 @@ public:
 
 
 
-
+	afx_msg BOOL  OnInitDialog();
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnNMCustomdrawDefenseslider(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider2(NMHDR *pNMHDR, LRESULT *pResult);
@@ -51,5 +51,8 @@ public:
 	afx_msg void OnNMCustomdrawSlider7(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider8(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider9(NMHDR *pNMHDR, LRESULT *pResult);
+//	CListBox playerslist_;
 	CListCtrl playerslist_;
+	CListCtrl playerslist2_;
 };
+
