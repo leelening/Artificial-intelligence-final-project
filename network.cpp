@@ -1,6 +1,9 @@
 #include "stdafx.h"
 
 #include "network.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 #define LINE 1024
 
@@ -45,34 +48,45 @@ char *neuronsnetwork::ReadData(FILE *fp, char *buf)
 	return fgets(buf, LINE, fp);
 }
 
-void neuronsnetwork::readfile()
+void neuronsnetwork::readfile(char *filename)
 {
-	/*char buffer[256];  
+	char buffer[256];  
 	fstream outFile;  
-	outFile.open("inFile.txt",ios::in);  
-	cout<<"inFile.txt"<<"--- all file is as follows:---"<<endl;  
+	char *data[LINE];
+	int i = 0;
+	outFile.open(filename,ios::in);  
+	//cout<<"inFile.txt"<<"--- all file is as follows:---"<<endl;  
 	while(!outFile.eof())  
 	{  
 		outFile.getline(buffer,256,'\n');//getline(char *,int,char) 表示该行字符达到256个或遇到换行就结束  
-		cout<<buffer<<endl;  
-	}  
-	outFile.close(); */
-
-	char *buf,*p;
-	char *data[LINE];
-	int i = 0;
-	buf = (char *)malloc(LINE*sizeof(char));
-	p = ReadData(fp, buf);
-	while (p)
-	{
-		if (buf[0]!='#')
+		if (buffer[0]!='#')
 		{
-			data[i] = buf;
+			data[LINE] = buffer;
 			i = i + 1;
 		}
-		p = ReadData(fp, buf);
-	}
-	fclose(fp);
+	}  
+	outFile.close();
+
+	//char *buf,*p;
+	//char *data[LINE];
+	//int i = 0;
+ //   if ((fp=fopen("SGdataset","r"))==NULL)
+ //   {
+	//	MessageBox(NULL,TEXT("erro!"),NULL,MB_OK);
+ //       exit(0);
+ //   }
+	//buf = (char *)malloc(LINE*sizeof(char));
+	//p = ReadData(fp, buf);
+	//while (p)
+	//{
+	//	if (buf[0]!='#')
+	//	{
+	//		data[i] = buf;
+	//		i = i + 1;
+	//	}
+	//	p = ReadData(fp, buf);
+	//}
+	//fclose(fp);
 }
 
 void neuronsnetwork::hidenlayeraddnode(float newweight)

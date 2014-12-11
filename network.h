@@ -93,7 +93,7 @@ public:
 
 	char *ReadData(FILE *fp, char *buf);
 
-	void readfile();
+	void readfile(char *filename);
 
 
 	void hidenlayeraddnode(float newweight);
