@@ -4,6 +4,13 @@
 //using namespace std;
 
 
+struct hiddennode//声明一个结构体类型Student
+{
+	float weight1;
+	float weight2;
+	float outputweight;
+};  //最后有一个分号
+
 
 
 
@@ -80,8 +87,13 @@ class neuronsnetwork
 {
 public:
 	inputlayer inputlayer_;
-	float weight[10];
 	outlayer outlayer_;
+	//int numnodes;
+	int inputsize;
+	int datasize;
+	//float weight[numnodes][inputsize];
+	//float outputweight[numnodes];
+	hiddennode node[10];
 
 protected:
 	FILE *fp;
@@ -103,6 +115,7 @@ public:
 
 	void train();
 
+	void scaleinputsize();
 
 
 	void run();

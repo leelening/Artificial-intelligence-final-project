@@ -200,10 +200,10 @@ HCURSOR CAIFinalPorjectDlg::OnQueryDragIcon()
 void CAIFinalPorjectDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
-/*	PGmind.run();
-	SGmind.run();
-	SFmind.run();
-	PFmind.run();
-	Cmind.run();
-	*/
+	//PGmind.run();
+	//SGmind.run();
+	//SFmind.run();
+	//PFmind.run();
+	//Cmind.run();
+	SGmind.readfile("SGdataset.txt");
 }
