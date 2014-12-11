@@ -204,5 +204,5 @@ void CAIFinalPorjectDlg::OnBnClickedButton2()
 	//SFmind.run();
 	//PFmind.run();
 	//Cmind.run();
-	SGmind.readfile("SGdataset.txt");
+	//SGmind.readfile("tain.txt");
 }

@@ -11,7 +11,12 @@ struct hiddennode//声明一个结构体类型Student
 	float outputweight;
 };  //最后有一个分号
 
-
+struct example
+{
+	int input1;
+	int input2;
+	int output;
+};
 
 
 class inputlayer
@@ -26,6 +31,9 @@ public:
 protected:
 
 public:
+
+
+	example examples[1024];
 
 	int ballx;
 	int bally;
@@ -92,21 +100,21 @@ public:
 	inputlayer inputlayer_;
 	outlayer outlayer_;
 	//int numnodes;
-	int inputsize;
+	//int inputsize;
 	int datasize;
 	//float weight[numnodes][inputsize];
 	//float outputweight[numnodes];
-	hiddennode node[2];
+	hiddennode node[3];
 
 protected:
-	FILE *fp;
+	//FILE *fp;
 
 public:
 	neuronsnetwork();
 
 	virtual ~neuronsnetwork(){}
 
-	char *ReadData(FILE *fp, char *buf);
+	//char *ReadData(FILE *fp, char *buf);
 
 	void readfile(char *filename);
 
@@ -120,7 +128,7 @@ public:
 
 	void train();
 
-	void scaleinputsize();
+	int lendata(char *filename);
 
 	void run();
 	

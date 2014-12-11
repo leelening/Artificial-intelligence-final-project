@@ -2,6 +2,7 @@
 #include "network.h"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 using namespace std;
 
 #define LINE 1024
@@ -46,71 +47,99 @@ neuronsnetwork::neuronsnetwork()
 {
 }
 
-
-char *neuronsnetwork::ReadData(FILE *fp, char *buf)
-{
-	return fgets(buf, LINE, fp);
-}
+//
+//char *neuronsnetwork::ReadData(FILE *fp, char *buf)
+//{
+//	return fgets(buf, LINE, fp);
+//}
 
 void neuronsnetwork::readfile(char *filename)
 {
+	//char buffer[256];  
+	//fstream outFile;  
+	//string data[LINE];
+	//int i = 0;
+	//outFile.open(filename,ios::in);
+
+
+	//while(!outFile.eof())  
+	//{  
+	//	outFile.getline(buffer,256,'\n');
+	//	if (buffer[0]!='#')
+	//	{
+	//		data[i] = buffer;
+	//		i = i + 1;
+	//	}
+	//}
+	//datasize = i - 1;
+	//
+	//
+	//for (int n= 0;n<datasize;n++)
+	//{
+	//	int m =0;
+	//	int temp[256];
+	//	for(int j = 0; j<24; j++)
+	//		if(isdigit(data[0][j]))
+	//		{
+	//			temp[m] = int(data[n][j])-48;
+	//			m++;
+	//		}
+	//	inputsize = i -1;
+	//	inputlayer_.ownx[n] = temp[2];
+	//	inputlayer_.owny[n] = temp[3];
+	//}
+	//outFile.close();
+
+	//
+
+	////char *buf,*p;
+	////char *data[LINE];
+	////int i = 0;
+ ////   if ((fp=fopen("SGdataset","r"))==NULL)
+ ////   {
+	////	MessageBox(NULL,TEXT("erro!"),NULL,MB_OK);
+ ////       exit(0);
+ ////   }
+	////buf = (char *)malloc(LINE*sizeof(char));
+	////p = ReadData(fp, buf);
+	////while (p)
+	////{
+	////	if (buf[0]!='#')
+	////	{
+	////		data[i] = buf;
+	////		i = i + 1;
+	////	}
+	////	p = ReadData(fp, buf);
+	////}
+	////fclose(fp);
+
+		//char buffer[256];  
+	//fstream outFile;  
+	//string data[LINE];
+	//int i = 0;
+	//outFile.open(filename,ios::in);
+
 	char buffer[256];  
 	fstream outFile;  
 	string data[LINE];
 	int i = 0;
 	outFile.open(filename,ios::in);
-
-	//cout<<"inFile.txt"<<"--- all file is as follows:---"<<endl;  
 	while(!outFile.eof())  
 	{  
-		outFile.getline(buffer,256,'\n');//getline(char *,int,char) 表示该行字符达到256个或遇到换行就结束  
+		outFile.getline(buffer,256,'\n');
 		if (buffer[0]!='#')
 		{
 			data[i] = buffer;
 			i = i + 1;
 		}
 	}
-	datasize = i - 1;
-	
-	
 	for (int n= 0;n<datasize;n++)
 	{
-		int m =0;
-		int temp[256];
-		for(int j = 0; j<24; j++)
-			if(isdigit(data[0][j]))
-			{
-				temp[m] = int(data[n][j])-48;
-				m++;
-			}
-		inputsize = i -1;
-		inputlayer_.ownx[n] = temp[2];
-		inputlayer_.owny[n] = temp[3];
+		inputlayer_.examples[n].input1 = data[n][0];
+		inputlayer_.examples[n].input2 = data[n][1];
+		inputlayer_.examples[n].output = data[n][3];
 	}
 	outFile.close();
-
-	
-
-	//char *buf,*p;
-	//char *data[LINE];
-	//int i = 0;
- //   if ((fp=fopen("SGdataset","r"))==NULL)
- //   {
-	//	MessageBox(NULL,TEXT("erro!"),NULL,MB_OK);
- //       exit(0);
- //   }
-	//buf = (char *)malloc(LINE*sizeof(char));
-	//p = ReadData(fp, buf);
-	//while (p)
-	//{
-	//	if (buf[0]!='#')
-	//	{
-	//		data[i] = buf;
-	//		i = i + 1;
-	//	}
-	//	p = ReadData(fp, buf);
-	//}
-	//fclose(fp);
 }
 
 void neuronsnetwork::hidenlayeraddnode(float newweight)
@@ -138,20 +167,29 @@ void neuronsnetwork::changeweight(float changedweight, int i)
 	//weight[i] = changedweight;
 }
 
-void neuronsnetwork::scaleinputsize()
+int neuronsnetwork::lendata(char *filename)
 {
+	fstream outFile;  
+	int i = 0;
+	outFile.open(filename,ios::in);
 
+	while(!outFile.eof())  
+	{  
+			i = i + 1;
+	}
+	datasize = i - 1;
+	return (i - 1);
 }
 
 
 float g(float x)
 {
-	return 0;
+	return (1 / (1 + (exp(-(x)))));
 }
 
 float gprime(float x)
 {
-	return 0;
+	return (1 / (2 + (exp(-(x))) + (exp((x)))));
 }
 
 
@@ -159,17 +197,17 @@ void neuronsnetwork::train()
 {
 	for (int i = 0;i<3;i = i + 1)
 	{
-		node[i].weight1 = rand()%6;
-		node[i].weight2 = rand()%6;
-		node[i].outputweight = rand()%6;
+		node[i].weight1 = rand()/(RAND_MAX+1.0)*5;
+		node[i].weight2 = rand()/(RAND_MAX+1.0)*5;
+		node[i].outputweight = rand()/(RAND_MAX+1.0)*5;
 	}
 	float in_ [3];//the size of the hiddenlayer
 	float a[2];
 
-	for (int m = 0;m<datasize;m=m+1)       //# Propagate the inputs forward to compute the outputs
+	for (int m = 0;m < datasize;m=m+1)       //# Propagate the inputs forward to compute the outputs
 	{
-		a[0] = exmaple[m].input1;
-		a[1] = example[m].input2;
+		a[0] = inputlayer_.examples[m].input1;
+		a[1] = inputlayer_.examples[m].input2;
 		float b[3];		
 		float suma = 0;
 		float deltai[3];
@@ -183,7 +221,7 @@ void neuronsnetwork::train()
 			suma = suma + b[p] * node[p].outputweight;
 		}
 		float newa = g(suma);
-		float deltaj = gprime(suma) * (examples[m].value - newa);
+		float deltaj = gprime(suma) * (inputlayer_.examples[m].output - newa);
 		for (int k=0;k<3;k=k+1)
 			deltai[k]=gprime(in_[k])*(node[k].outputweight * deltaj);
 
@@ -213,19 +251,18 @@ void neuronsnetwork::run()
 	float in_[3];
 	float b[3];
 
-	for(int i=0;i<len(testdata);i++)
+	for(int i=0;i<datasize;i++)
 	{
 		float suma = 0;
-		a[0] = float(testdata[i].x);
-		a[1] = float(testdata[i].y);
-		float label = float(testdata[i].value);
-
+		a[0] = float(inputlayer_.examples[i].input1);
+		a[1] = float(inputlayer_.examples[i].input2);
+		//float label = float(inputlayer_.examples[i].output);
 		for(int j = 0;j < 3;j++)						//# for the layer 2
 		{
 			in_[j] = a[0] * node[j].weight1 + a[1] * node[j].weight2;
 			b[j] = g(in_[j]);
 		}
-		for(int m;m<3;m++)
+		for(int m=0;m<3;m++)
 		{
 			suma = suma + b[m] * node[m].outputweight;
 		}
