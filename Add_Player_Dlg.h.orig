@@ -33,7 +33,10 @@ public:
 
 
 
+<<<<<<< HEAD
 	afx_msg BOOL  OnInitDialog();
+=======
+>>>>>>> 32e4b5a90b1a6ee03482b9aadd363ace245e6ed7
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnNMCustomdrawDefenseslider(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider2(NMHDR *pNMHDR, LRESULT *pResult);
