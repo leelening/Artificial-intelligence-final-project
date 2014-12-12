@@ -10,10 +10,20 @@
 #include "Delete_Player_Dlg.h"
 #include "Add_Tactics_Dlg.h"
 #include "Delete_Tactics_Dlg.h"
+#include "network.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+
+neuronsnetwork PGmind;
+neuronsnetwork SGmind;
+neuronsnetwork SFmind;
+neuronsnetwork PFmind;
+neuronsnetwork Cmind;
+
+
 
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
@@ -70,6 +80,7 @@ BEGIN_MESSAGE_MAP(CAIFinalPorjectDlg, CDialogEx)
 	ON_COMMAND(ID_PLAYER_DELETE, deleteplayerfunc)
 	ON_COMMAND(ID_TACTICS_ADD, addtacticsfunc)
 	ON_COMMAND(ID_TACTICS_DELETE, deletetaticsfunc)
+	ON_BN_CLICKED(IDC_BUTTON2, &CAIFinalPorjectDlg::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 
@@ -183,3 +194,15 @@ HCURSOR CAIFinalPorjectDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CAIFinalPorjectDlg::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//PGmind.run();
+	//SGmind.run();
+	//SFmind.run();
+	//PFmind.run();
+	//Cmind.run();
+	SGmind.readfile("SGdataset.txt");
+}

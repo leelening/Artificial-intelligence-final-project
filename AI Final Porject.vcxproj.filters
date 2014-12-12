@@ -48,6 +48,9 @@
     <ClInclude Include="playerproperty.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="network.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI Final Porject.cpp">
@@ -69,6 +72,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Delete_Tactics_Dlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="network.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

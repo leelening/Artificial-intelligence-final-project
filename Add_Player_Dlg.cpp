@@ -94,6 +94,11 @@ void Add_Player_Dlg::OnBnClickedOk()
 	
 	CButton *checkbox1=(CButton*)GetDlgItem(IDC_CHECK3);
 	CButton *checkbox2=(CButton*)GetDlgItem(IDC_CHECK4);
+	CButton *checkbox3=(CButton*)GetDlgItem(IDC_CHECK5);
+	CButton *checkbox4=(CButton*)GetDlgItem(IDC_CHECK6);
+	CButton *checkbox5=(CButton*)GetDlgItem(IDC_CHECK7);
+	CButton *checkbox6=(CButton*)GetDlgItem(IDC_CHECK8);
+	CButton *checkbox7=(CButton*)GetDlgItem(IDC_CHECK9);
 	if(checkbox1->GetCheck())   
     {
 		/*CEdit* edit4=(CEdit*)GetDlgItem(IDC_EDIT4);
@@ -115,6 +120,8 @@ void Add_Player_Dlg::OnBnClickedOk()
 		CString str7;
 		CString str8;
 		CString str9;
+		/*CString str10;*/
+
          CEdit* edit4=(CEdit*)GetDlgItem(IDC_EDIT4);
 		 edit4->GetWindowText(str1);
 		CEdit* edit8=(CEdit*)GetDlgItem(IDC_EDIT8);
@@ -133,7 +140,26 @@ void Add_Player_Dlg::OnBnClickedOk()
 		edit7->GetWindowText(str8);
 		CEdit* edit10=(CEdit*)GetDlgItem(IDC_EDIT10);
 		edit10->GetWindowText(str9);
-		playerslist2_.InsertItem(0,_T("sg"));//插入行
+		if (checkbox3->GetCheck())
+		{
+				playerslist2_.InsertItem(0,_T("SG"));//插入行
+		}
+		else if (checkbox4->GetCheck())
+		{
+			playerslist2_.InsertItem(0,_T("PG"));//插入行
+		}
+		else if (checkbox5->GetCheck())
+		{
+			playerslist2_.InsertItem(0,_T("C"));//插入行
+		}
+			else if (checkbox6->GetCheck())
+		{
+			playerslist2_.InsertItem(0,_T("PF"));//插入行
+		}
+		else if (checkbox7->GetCheck())
+		{
+			playerslist2_.InsertItem(0,_T("SF"));//插入行
+		}
 		playerslist2_.SetItemText(0,1,str1);//设置该行的不同列的显示字符
 		playerslist2_.SetItemText(0,2,str2);
 		playerslist2_.SetItemText(0,3,str3);
@@ -173,7 +199,7 @@ void Add_Player_Dlg::OnBnClickedOk()
 		edit7->GetWindowText(str8);
 		CEdit* edit10=(CEdit*)GetDlgItem(IDC_EDIT10);
 		edit10->GetWindowText(str9);
-		playerslist_.InsertItem(0,_T("sg"));//插入行
+		playerslist_.InsertItem(0,_T("defender"));//插入行
 		playerslist_.SetItemText(0,1,str1);//设置该行的不同列的显示字符
 		playerslist_.SetItemText(0,2,str2);
 		playerslist_.SetItemText(0,3,str3);
