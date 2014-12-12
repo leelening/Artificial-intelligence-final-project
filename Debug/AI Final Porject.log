@@ -1,21 +1,5 @@
-﻿Build started 12/12/2014 4:44:37 AM.
-     1>Project "C:\Users\Jimmyhung\Documents\Visual Studio 2012\Projects\ai\AI Final Porject\AI Final Porject\AI Final Porject.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\APP\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Add_Player_Dlg.cpp
-         Add_Player_Dlg.cpp
-       Link:
-         C:\APP\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jimmyhung\Documents\Visual Studio 2012\Projects\ai\AI Final Porject\Debug\AI Final Porject.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\APP\Microsoft Visual Studio 11.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"C:\Users\Jimmyhung\Documents\Visual Studio 2012\Projects\ai\AI Final Porject\Debug\AI Final Porject.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jimmyhung\Documents\Visual Studio 2012\Projects\ai\AI Final Porject\Debug\AI Final Porject.lib" /MACHINE:X86 "Debug\AI Final Porject.res"
-         Debug\Add_Player_Dlg.obj
-         Debug\Add_Tactics_Dlg.obj
-         "Debug\AI Final Porject.obj"
-         "Debug\AI Final PorjectDlg.obj"
-         Debug\Delete_Player_Dlg.obj
-         Debug\Delete_Tactics_Dlg.obj
-         Debug\network.obj
-         Debug\stdafx.obj
-         AI Final Porject.vcxproj -> C:\Users\Jimmyhung\Documents\Visual Studio 2012\Projects\ai\AI Final Porject\Debug\AI Final Porject.exe
-     1>Done Building Project "C:\Users\Jimmyhung\Documents\Visual Studio 2012\Projects\ai\AI Final Porject\AI Final Porject\AI Final Porject.vcxproj" (Build target(s)).
+﻿Build started 12/13/2014 7:33:14 AM.
 
 Build succeeded.
 
-Time Elapsed 00:00:04.50
+Time Elapsed 00:00:00.20
