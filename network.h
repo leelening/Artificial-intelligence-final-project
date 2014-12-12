@@ -13,8 +13,8 @@ struct hiddennode//声明一个结构体类型Student
 
 struct example
 {
-	int input1;
-	int input2;
+	float input1;
+	float input2;
 	int output;
 };
 
@@ -130,7 +130,7 @@ public:
 
 	int lendata(char *filename);
 
-	void run();
+	int run(int i,int j);
 	
 
 
