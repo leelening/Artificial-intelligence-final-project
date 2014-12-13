@@ -78,7 +78,6 @@ void Delete_Player_Dlg::OnLvnColumnclickList1(NMHDR *pNMHDR, LRESULT *pResult)
 	// TODO: 在此添加控件通知处理程序代码
 
 	CString str; 
-	
 	POSITION pos = attacker_team_list_.GetFirstSelectedItemPosition(); 
 	if(pos==NULL) 
 	{ 
@@ -114,8 +113,7 @@ void Delete_Player_Dlg::OnLvnColumnclickList2(NMHDR *pNMHDR, LRESULT *pResult)
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
 	// TODO: 在此添加控件通知处理程序代码
 
-		CString str; 
-	
+	CString str; 
 	POSITION pos = attacker_team_list_.GetFirstSelectedItemPosition(); 
 	if(pos==NULL) 
 	{ 

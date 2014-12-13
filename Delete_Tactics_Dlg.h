@@ -23,6 +23,9 @@ public:
 	afx_msg BOOL  OnInitDialog();
 	afx_msg void OnBnClickedOk();
 	CListCtrl Delete_tactics_;
+	afx_msg void OnLvnColumnclickList1(NMHDR *pNMHDR, LRESULT *pResult);
+//	afx_msg void OnLvnItemchangedList1(NMHDR *pNMHDR, LRESULT *pResult);
+//	afx_msg void OnLvnItemchangedList1(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 
