@@ -47,8 +47,8 @@ public:
 //	CString method_;
 //	CEdit method_;
 //	CString method_;
-	CString ballx_;
-	CString bally_;
+//	CString ballx_;
+//	CString bally_;
 //	CEdit cx_;
 	CString cy_;
 	CString cx_;
@@ -63,4 +63,14 @@ public:
 	CString sgx_;
 	CString pfy_;
 	afx_msg void OnBnClickedButton1();
+	BOOL Chold_;
+	BOOL PFhold_;
+	BOOL SFhold_;
+	BOOL SGhold_;
+//	BOOL PGhold_;
+	CButton PGhold_;
+	CString time_;
+//	CString denfendery_;
+	CString defenderx_;
+	CString defendery_;
 };

@@ -8,7 +8,7 @@
 using namespace std;
 
 #define LINE 1024
-#define alpha 0.1
+#define alpha 0.5
 
 
 int PGnextx;
@@ -64,12 +64,14 @@ void neuronsnetwork::readfile(char *filename)
 	outFile.open(filename,ios::in);
 	char a;
 	char b;
+	char c;
+	char d;
 
 	while(!outFile.eof())  
 	{  
-		outFile>>inputlayer_.examples[i].input1>>a>>inputlayer_.examples[i].input2>>b>>inputlayer_.examples[i].output;
-		inputlayer_.examples[i].input1 = inputlayer_.examples[i].input1;
-		inputlayer_.examples[i].input2 = inputlayer_.examples[i].input2;
+		outFile>>inputlayer_.examples[i].input1>>a>>inputlayer_.examples[i].input2>>b>>inputlayer_.examples[i].input3>>c>>inputlayer_.examples[i].input4>>d>>inputlayer_.examples[i].output;
+		//inputlayer_.examples[i].input1 = inputlayer_.examples[i].input1;
+		//inputlayer_.examples[i].input2 = inputlayer_.examples[i].input2;
 		i = i + 1;
 	}
 	datasize = i - 1;
@@ -239,7 +241,7 @@ void neuronsnetwork::train()
 
 int neuronsnetwork::judge(float number)
 {
-	if (number <= 0.5)
+	if (number <= 0.85)
 		return 0 ;
 	else
 		return 1;
@@ -252,6 +254,7 @@ int neuronsnetwork::run(int i1,int i2, int i3,int i4)
 	float a[4];
 	float in_[3];
 	float b[3];
+
 
 	float suma = 0;
 	a[0] = float(i1);
@@ -270,19 +273,34 @@ int neuronsnetwork::run(int i1,int i2, int i3,int i4)
 	}
 	float newa = g(suma);
 	int newlabel = judge (newa);
-	switch(newlabel)
-	{
-	case 0:
-		return 0;// output pass
-		break;
-	case 1:
-		return 1;// output shoot
-		break;
-	default:
-		return 2;// no action
-		break;
 
+	for(int i = 0;i<datasize;i++)
+	{
+		int daf = inputlayer_.examples[i].output;
+		if((float(i1) == inputlayer_.examples[i].input1)&&(float(i2) == inputlayer_.examples[i].input2)&&(float( newlabel) != float(inputlayer_.examples[i].output) ))
+		{
+				error = error + 1;
+		}
 	}
+		
+
+	//switch(newlabel)
+	//{
+	//case 0:
+	//	return 0;// output pass
+	//	break;
+	//case 1:
+	//	return 1;// output shoot
+	//	break;
+	//default:
+	//	return 2;// no action
+	//	break;
+	return newlabel;
+}
+
+
+
+	
 /*
 	if (inputlayer_.holdball == 1)
 	{
@@ -325,4 +343,4 @@ int neuronsnetwork::run(int i1,int i2, int i3,int i4)
 			break;
 		}
 	}*/
-}
+

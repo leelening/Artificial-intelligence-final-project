@@ -4,6 +4,7 @@
 //using namespace std;
 
 
+
 struct hiddennode//声明一个结构体类型Student
 {
 	float weight1;
@@ -11,7 +12,7 @@ struct hiddennode//声明一个结构体类型Student
 	float weight3;
 	float weight4;
 	float outputweight;
-};  //最后有一个分号
+};
 
 struct example
 {
@@ -50,6 +51,9 @@ public:
 	int ownx;
 	int owny;
 
+	int defenderx;
+	int defendery;
+
 
 	int PGx;
 	int PGy;
@@ -71,6 +75,8 @@ public:
 										//	1 hold the ball
 
 	int time;
+
+	int playervalue;
 
 	int socreattack;
 
@@ -109,6 +115,8 @@ public:
 	//float weight[numnodes][inputsize];
 	//float outputweight[numnodes];
 	hiddennode node[3];
+
+	int error;
 
 protected:
 	//FILE *fp;

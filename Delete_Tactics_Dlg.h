@@ -1,4 +1,5 @@
 #pragma once
+#include "afxcmn.h"
 
 
 // Delete_Tactics_Dlg 对话框
@@ -18,4 +19,10 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg BOOL  OnInitDialog();
+	afx_msg void OnBnClickedOk();
+	CListCtrl Delete_tactics_;
 };
+
+
