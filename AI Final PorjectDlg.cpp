@@ -204,8 +204,8 @@ void CAIFinalPorjectDlg::OnBnClickedButton2()
 	//SFmind.run();
 	//PFmind.run();
 	//Cmind.run();
-	SGmind.readfile("traindata.txt");
+	SGmind.readfile("data3.txt");
 	SGmind.train();
-	int method = SGmind.run(0,4);
+	int method = SGmind.run(0,3);
 
 }

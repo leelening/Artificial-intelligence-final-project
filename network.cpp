@@ -68,8 +68,8 @@ void neuronsnetwork::readfile(char *filename)
 	while(!outFile.eof())  
 	{  
 		outFile>>inputlayer_.examples[i].input1>>a>>inputlayer_.examples[i].input2>>b>>inputlayer_.examples[i].output;
-		inputlayer_.examples[i].input1 = inputlayer_.examples[i].input1/15;
-		inputlayer_.examples[i].input2 = inputlayer_.examples[i].input2/15;
+		inputlayer_.examples[i].input1 = inputlayer_.examples[i].input1;
+		inputlayer_.examples[i].input2 = inputlayer_.examples[i].input2;
 		i = i + 1;
 	}
 	datasize = i - 1;
@@ -221,12 +221,15 @@ void neuronsnetwork::train()
 		for (int k = 0;k < 3;k = k + 1)
 			deltai[k]=gprime(in_[k])*(node[k].outputweight * deltaj);
 
+		float am;
 		for (int c = 0;c < 3;c = c + 1)
 		{
 			node[c].weight1 = node[c].weight1 + alpha * a[0] * deltai[c];
+			
 			node[c].weight2 = node[c].weight2 + alpha *	a[1] * deltai[c];
 			node[c].outputweight = node[c].outputweight + b[c] * deltaj;
 		}
+		am = node[0].weight1 + alpha * a[0] * deltai[0];
 
 
 	}
@@ -234,7 +237,7 @@ void neuronsnetwork::train()
 
 int neuronsnetwork::judge(float number)
 {
-	if (number < 0.5)
+	if (number <= 0.5)
 		return 0 ;
 	else
 	{
