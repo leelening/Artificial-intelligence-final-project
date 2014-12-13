@@ -8,6 +8,8 @@ struct hiddennode//声明一个结构体类型Student
 {
 	float weight1;
 	float weight2;
+	float weight3;
+	float weight4;
 	float outputweight;
 };  //最后有一个分号
 
@@ -15,6 +17,8 @@ struct example
 {
 	float input1;
 	float input2;
+	float input3;
+	float input4;
 	int output;
 };
 
@@ -43,8 +47,8 @@ public:
 											// SF = 3
 											// PF = 4
 											// C  = 5
-	int ownx[1000];
-	int owny[1000];
+	int ownx;
+	int owny;
 
 
 	int PGx;
@@ -130,7 +134,7 @@ public:
 
 	int lendata(char *filename);
 
-	int run(int i,int j);
+	int run(int i1,int i2, int i3, int i4);
 	
 
 

@@ -11,17 +11,20 @@
 #include "Add_Tactics_Dlg.h"
 #include "Delete_Tactics_Dlg.h"
 #include "network.h"
+#include "string.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
 
 neuronsnetwork PGmind;
 neuronsnetwork SGmind;
 neuronsnetwork SFmind;
 neuronsnetwork PFmind;
 neuronsnetwork Cmind;
+
+
+
 
 
 
@@ -63,6 +66,18 @@ END_MESSAGE_MAP()
 
 CAIFinalPorjectDlg::CAIFinalPorjectDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CAIFinalPorjectDlg::IDD, pParent)
+	, ballx_(_T(""))
+	, bally_(_T(""))
+	, cy_(_T(""))
+	, cx_(_T(""))
+	, pfx_(_T(""))
+	, sfx_(_T(""))
+	, sfy_(_T(""))
+	, pgx_(_T(""))
+	, pgy_(_T(""))
+	, sgy_(_T(""))
+	, sgx_(_T(""))
+	, pfy_(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -70,6 +85,26 @@ CAIFinalPorjectDlg::CAIFinalPorjectDlg(CWnd* pParent /*=NULL*/)
 void CAIFinalPorjectDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	//  DDX_Text(pDX, IDC_EDIT10, SGy_);
+	//  DDX_Text(pDX, IDC_EDIT9, SGx_);
+	//  DDX_Text(pDX, IDC_EDIT17, method_);
+	//  DDX_Control(pDX, IDC_EDIT17, method_);
+	//  DDX_Text(pDX, IDC_EDIT17, method_);
+	DDX_Text(pDX, IDC_EDIT1, ballx_);
+	DDX_Text(pDX, IDC_EDIT2, bally_);
+	//  DDX_Control(pDX, IDC_EDIT3, cx_);
+	DDX_Text(pDX, IDC_EDIT4, cy_);
+	DDX_Text(pDX, IDC_EDIT3, cx_);
+	DDX_Text(pDX, IDC_EDIT5, pfx_);
+	//  DDX_Text(pDX, IDC_EDIT6, pf_);
+	DDX_Text(pDX, IDC_EDIT7, sfx_);
+	DDX_Text(pDX, IDC_EDIT8, sfy_);
+	DDX_Text(pDX, IDC_EDIT11, pgx_);
+	//  DDX_Control(pDX, IDC_EDIT12, pgy_);
+	DDX_Text(pDX, IDC_EDIT12, pgy_);
+	DDX_Text(pDX, IDC_EDIT10, sgy_);
+	DDX_Text(pDX, IDC_EDIT9, sgx_);
+	DDX_Text(pDX, IDC_EDIT6, pfy_);
 }
 
 BEGIN_MESSAGE_MAP(CAIFinalPorjectDlg, CDialogEx)
@@ -81,6 +116,7 @@ BEGIN_MESSAGE_MAP(CAIFinalPorjectDlg, CDialogEx)
 	ON_COMMAND(ID_TACTICS_ADD, addtacticsfunc)
 	ON_COMMAND(ID_TACTICS_DELETE, deletetaticsfunc)
 	ON_BN_CLICKED(IDC_BUTTON2, &CAIFinalPorjectDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON1, &CAIFinalPorjectDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -116,6 +152,9 @@ BOOL CAIFinalPorjectDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+
+
+
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -198,7 +237,7 @@ HCURSOR CAIFinalPorjectDlg::OnQueryDragIcon()
 
 void CAIFinalPorjectDlg::OnBnClickedButton2()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	//TODO: 在此添加控件通知处理程序代码
 	//PGmind.run();
 	//SGmind.run();
 	//SFmind.run();
@@ -206,6 +245,38 @@ void CAIFinalPorjectDlg::OnBnClickedButton2()
 	//Cmind.run();
 	SGmind.readfile("data3.txt");
 	SGmind.train();
-	int method = SGmind.run(0,3);
 
+	SGmind.inputlayer_.PGx = int(pgx_.GetString());
+	SGmind.inputlayer_.PGy = int(pgy_.GetString());
+	SGmind.inputlayer_.SFx = int(sfx_.GetString());
+	SGmind.inputlayer_.SFy = int(sfy_.GetString());	
+	SGmind.inputlayer_.PFx = int(pfx_.GetString());
+	SGmind.inputlayer_.PFy = int(pfy_.GetString());
+	SGmind.inputlayer_.Cx = int(cx_.GetString());
+	SGmind.inputlayer_.Cy = int(cy_.GetString());
+
+
+
+
+
+
+
+
+
+
+
+
+	SGmind.inputlayer_.ownx = int(sgx_.GetString());
+	SGmind.inputlayer_.owny = int(sgy_.GetString());
+	int method = SGmind.run(SGmind.inputlayer_.ownx,SGmind.inputlayer_.owny, );
+	CString strText = _T("");
+	strText.Format(_T("%d"), method);
+	SetDlgItemText(IDC_EDIT17, strText);
+}
+
+
+void CAIFinalPorjectDlg::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	exit(0);
 }
