@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "AI Final Porject.h"
 #include "Add_Player_Dlg.h"
+
 #include "afxdialogex.h"
 #include "playerproperty.h"
 
@@ -102,7 +103,6 @@ void Add_Player_Dlg::OnBnClickedOk()
 	if(checkbox1->GetCheck())   
     {
 		/*CEdit* edit4=(CEdit*)GetDlgItem(IDC_EDIT4);
-
 		CEdit* edit8=(CEdit*)GetDlgItem(IDC_EDIT8);
 		CEdit* edit16=(CEdit*)GetDlgItem(IDC_EDIT16);
 		CEdit* edit13=(CEdit*)GetDlgItem(IDC_EDIT13);
@@ -121,7 +121,7 @@ void Add_Player_Dlg::OnBnClickedOk()
 		CString str8;
 		CString str9;
 		/*CString str10;*/
-
+		int averge;
          CEdit* edit4=(CEdit*)GetDlgItem(IDC_EDIT4);
 		 edit4->GetWindowText(str1);
 		CEdit* edit8=(CEdit*)GetDlgItem(IDC_EDIT8);
@@ -143,6 +143,8 @@ void Add_Player_Dlg::OnBnClickedOk()
 		if (checkbox3->GetCheck())
 		{
 				playerslist2_.InsertItem(0,_T("SG"));//²åÈëÐÐ
+				averge=(_ttoi(str2)+_ttoi(str3)+_ttoi(str4)+_ttoi(str9))/4;
+				evalution_sg=averge;
 		}
 		else if (checkbox4->GetCheck())
 		{
@@ -210,6 +212,7 @@ void Add_Player_Dlg::OnBnClickedOk()
 		playerslist_.SetItemText(0,8,str8);
 		playerslist_.SetItemText(0,9,str9);
     }
+	
 }
 
 

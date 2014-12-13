@@ -5,31 +5,19 @@
 using namespace std;
 
 #define LINE 1024
-
-
 int PGnextx;
 int PGnexty;
-
 int SGnextx;
 int SGnexty;
-
 int SFnextx;
 int SFnexty;
-
 int PFnextx;
 int PFnexty;
-
 int Cnextx;
 int Cnexty;
-
 int nextmethod;
-
 int nextballpositionx;
 int nextballpositiony;
-
-
-
-
 
 inputlayer::inputlayer()
 {
@@ -204,25 +192,24 @@ void neuronsnetwork::train()
 
 void neuronsnetwork::run()
 {
-	/*a = [None] * 2
-	in_ = [None] * (len(network.hidden))
-	b = [None] * (len(network.hidden))
-	error = 0
-	for i in range(len(testdata)):
-		suma = 0
-		a[0] = float(testdata[i].x)
-		a[1] = float(testdata[i].y)
-		label = float(testdata[i].value)
-		for j in range(len(network.hidden)): # for the layer 2
-			in_[j] = a[0] * network.hidden[j].weightX + a[1] * network.hidden[j].weightY
-			b[j] = g(in_[j])
-		for m in range(len(b)): # for the layer 3
-			suma = suma + b[m] * network.hidden[m].weightOutput
-		newa = g(suma)
-		newlabel = judge (newa)
-		if newlabel != label:
-			error = error + 1*/
-
+	//a = [None] * 2
+	//in_ = [None] * (len(network.hidden))
+	//b = [None] * (len(network.hidden))
+	//error = 0
+	//for i in range(len(testdata)):
+	//	suma = 0
+	//	a[0] = float(testdata[i].x)
+	//	a[1] = float(testdata[i].y)
+	//	label = float(testdata[i].value)
+	//	for j in range(len(network.hidden)): # for the layer 2
+	//		in_[j] = a[0] * network.hidden[j].weightX + a[1] * network.hidden[j].weightY
+	//		b[j] = g(in_[j])
+	//	for m in range(len(b)): # for the layer 3
+	//		suma = suma + b[m] * network.hidden[m].weightOutput
+	//	newa = g(suma)
+	//	newlabel = judge (newa)
+	//	if newlabel != label:
+	//		error = error + 1
 	if (inputlayer_.holdball == 1)
 	{
 		nextballpositionx = outlayer_.balldestinationx;

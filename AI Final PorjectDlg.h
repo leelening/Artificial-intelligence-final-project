@@ -38,6 +38,8 @@ protected:
 	void deletetaticsfunc();
 
 public:
+	float evaluation_sg;
+public:
 	afx_msg void OnInitializeplayersAddplayers();
 	afx_msg void OnBnClickedCheck1();
 	afx_msg void OnBnClickedButton2();

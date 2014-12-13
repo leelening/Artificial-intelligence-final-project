@@ -15,6 +15,7 @@
 // 有关此类的实现，请参阅 AI Final Porject.cpp
 //
 
+static int evalution_sg;
 class CAIFinalPorjectApp : public CWinApp
 {
 public:
