@@ -11,14 +11,22 @@ struct hiddennode//声明一个结构体类型Student
 	float outputweight;
 };  //最后有一个分号
 
+
+
+
 class inputlayer
 {
+	
+
 public:
 	inputlayer();							// 标准构造函数
 	~inputlayer(){}
+
+
 protected:
 
 public:
+
 	int ballx;
 	int bally;
 	int selfposition;
@@ -49,11 +57,17 @@ public:
 
 	int holdball;						//  0 not hold the ball
 										//	1 hold the ball
+
 	int time;
+
 	int socreattack;
+
 	int scoredefense;
+
 	int tactics;						//	tactics
+
 };
+
 
 class outlayer
 {

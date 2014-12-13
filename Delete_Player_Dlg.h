@@ -1,4 +1,5 @@
 #pragma once
+#include "afxcmn.h"
 
 
 // Delete_Player_Dlg 对话框
@@ -18,4 +19,8 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg BOOL  OnInitDialog();
+	CListCtrl attacker_team_list_;
+	CListCtrl defender_team_list_;
 };

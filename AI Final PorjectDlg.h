@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
 
 // CAIFinalPorjectDlg ¶Ô»°¿ò
@@ -43,4 +44,35 @@ public:
 	afx_msg void OnInitializeplayersAddplayers();
 	afx_msg void OnBnClickedCheck1();
 	afx_msg void OnBnClickedButton2();
+//	CString SGy_;
+//	CString SGx_;
+//	CString method_;
+//	CEdit method_;
+//	CString method_;
+//	CString ballx_;
+//	CString bally_;
+//	CEdit cx_;
+	CString cy_;
+	CString cx_;
+	CString pfx_;
+//	CString pf_;
+	CString sfx_;
+	CString sfy_;
+	CString pgx_;
+//	CEdit pgy_;
+	CString pgy_;
+	CString sgy_;
+	CString sgx_;
+	CString pfy_;
+	afx_msg void OnBnClickedButton1();
+	BOOL Chold_;
+	BOOL PFhold_;
+	BOOL SFhold_;
+	BOOL SGhold_;
+//	BOOL PGhold_;
+	CButton PGhold_;
+	CString time_;
+//	CString denfendery_;
+	CString defenderx_;
+	CString defendery_;
 };
