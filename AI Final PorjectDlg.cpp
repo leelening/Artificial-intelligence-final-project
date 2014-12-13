@@ -121,6 +121,7 @@ void CAIFinalPorjectDlg::DoDataExchange(CDataExchange* pDX)
 	//  DDX_Text(pDX, IDC_EDIT2, denfendery_);
 	DDX_Text(pDX, IDC_EDIT1, defenderx_);
 	DDX_Text(pDX, IDC_EDIT2, defendery_);
+	DDX_Control(pDX, IDC_LIST1, Tactics_input_);
 }
 
 BEGIN_MESSAGE_MAP(CAIFinalPorjectDlg, CDialogEx)
@@ -133,6 +134,7 @@ BEGIN_MESSAGE_MAP(CAIFinalPorjectDlg, CDialogEx)
 	ON_COMMAND(ID_TACTICS_DELETE, deletetaticsfunc)
 	ON_BN_CLICKED(IDC_BUTTON2, &CAIFinalPorjectDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON1, &CAIFinalPorjectDlg::OnBnClickedButton1)
+	ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST1, &CAIFinalPorjectDlg::OnLvnColumnclickList1)
 END_MESSAGE_MAP()
 
 
@@ -205,11 +207,16 @@ BOOL CAIFinalPorjectDlg::OnInitDialog()
 	strText6.Format(_T("%d"), time);
 	SetDlgItemText(IDC_EDIT13, strText6);
 
+	CListCtrl* pmyListCtrl = (CListCtrl*)GetDlgItem(IDC_LIST1);
+    DWORD dwStyle = GetWindowLong(pmyListCtrl->m_hWnd, GWL_STYLE);
+    SetWindowLong( pmyListCtrl->m_hWnd, GWL_STYLE, dwStyle | LVS_REPORT);
+
+	Tactics_input_.InsertColumn(0,_T("value"),LVCFMT_CENTER,40);
+	Tactics_input_.InsertColumn(1,_T("tactics"),LVCFMT_LEFT,70);
 
 
 
-
-	PGhold_.SetCheck(true);
+//	PGhold_.SetCheck(true);
 	UpdateData();
 
 
@@ -381,8 +388,8 @@ void CAIFinalPorjectDlg::OnBnClickedButton2()
 
 		SGmind.inputlayer_.playervalue = 60;
 
-	int jkl=0;
-		int method = SGmind.run((4 * SGmind.inputlayer_.ownx + SGmind.inputlayer_.owny),(4 * SGmind.inputlayer_.defenderx + SGmind.inputlayer_.defendery),SGmind.inputlayer_.time, SGmind.inputlayer_.playervalue);
+		int jkl=0;
+		int method = SGmind.run((4 * SGmind.inputlayer_.ownx + SGmind.inputlayer_.owny),(4 * SGmind.inputlayer_.defenderx + SGmind.inputlayer_.defendery),SGmind.inputlayer_.time, SGmind.inputlayer_.playervalue,tactics_value);
 		CString strText = _T("");
 		strText.Format(_T("%d"), method);
 		SetDlgItemText(IDC_EDIT17, strText);
@@ -398,7 +405,7 @@ void CAIFinalPorjectDlg::OnBnClickedButton2()
 		}
 		else
 		{
-			 jkl  = jkl +1;
+				jkl  = jkl +1;
 		}
 	}	
 	CString strText = _T("");
@@ -417,3 +424,26 @@ void CAIFinalPorjectDlg::OnBnClickedButton1()
 	exit(0);
 }
 
+
+
+void CAIFinalPorjectDlg::OnLvnColumnclickList1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	// TODO: 在此添加控件通知处理程序代码
+	CString str; 
+	int nId; 
+	POSITION pos=Tactics_input_.GetFirstSelectedItemPosition(); 
+	if(pos==NULL) 
+	{ 
+	MessageBox(_T("请至少选择一项"),_T("错误"),MB_ICONEXCLAMATION); 
+	return; 
+	} 
+	//得到行号，通过POSITION转化 
+	nId=(int)Tactics_input_.GetNextSelectedItem(pos); 
+	//得到列中的内容（0表示第一列，同理1,2,3...表示第二，三，四...列） 
+	str = Tactics_input_.GetItemText(nId,0); 
+	//str=Tactics_input_.GetItemText(nId,1); 
+	tactics_value =  _ttoi(str);
+
+	*pResult = 0;
+}

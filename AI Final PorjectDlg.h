@@ -4,6 +4,7 @@
 
 #pragma once
 #include "afxwin.h"
+#include "afxcmn.h"
 
 
 // CAIFinalPorjectDlg 对话框
@@ -15,7 +16,7 @@ public:
 
 // 对话框数据
 	enum { IDD = IDD_AIFINALPORJECT_DIALOG };
-
+	int tactics_value;
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
 
@@ -73,4 +74,6 @@ public:
 //	CString denfendery_;
 	CString defenderx_;
 	CString defendery_;
+	CListCtrl Tactics_input_;
+	afx_msg void OnLvnColumnclickList1(NMHDR *pNMHDR, LRESULT *pResult);
 };

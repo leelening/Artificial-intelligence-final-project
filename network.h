@@ -11,6 +11,7 @@ struct hiddennode//声明一个结构体类型Student
 	float weight2;
 	float weight3;
 	float weight4;
+	float weight5;
 	float outputweight;
 };
 
@@ -20,6 +21,7 @@ struct example
 	float input2;
 	float input3;
 	float input4;
+	float input5;
 	int output;
 };
 
@@ -142,7 +144,7 @@ public:
 
 	int lendata(char *filename);
 
-	int run(int i1,int i2, int i3, int i4);
+	int run(int i1,int i2, int i3, int i4,int i5);
 	
 
 

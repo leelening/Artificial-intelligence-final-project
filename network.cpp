@@ -199,11 +199,13 @@ void neuronsnetwork::train()
 		node[i].weight2 = rand()/(RAND_MAX+1.0);
 		node[i].weight3 = rand()/(RAND_MAX+1.0);
 		node[i].weight4 = rand()/(RAND_MAX+1.0);
+		node[i].weight5 = rand()/(RAND_MAX+1.0);
+
 
 		node[i].outputweight = rand()/(RAND_MAX+1.0);
 	}
 	float in_ [3];//the size of the hiddenlayer
-	float a[4];
+	float a[5];
 
 	for (int m = 0;m < datasize;m = m + 1)       //# Propagate the inputs forward to compute the outputs
 	{
@@ -211,20 +213,25 @@ void neuronsnetwork::train()
 		a[1] = inputlayer_.examples[m].input2;
 		a[2] = inputlayer_.examples[m].input3;
 		a[3] = inputlayer_.examples[m].input4;
+		a[4] = inputlayer_.examples[m].input4;
+
+
 		float b[3];		
 		float suma = 0;
 		float deltai[3];
 		for(int j = 0;j < 3;j =j + 1)// # for the layer 2
 		{
-			in_[j] = node[j].weight1 * a[0] + node[j].weight2 * a[1]+ node[j].weight3 * a[2]+ node[j].weight4 * a[3];
+			in_[j] = node[j].weight1 * a[0] + node[j].weight2 * a[1]+ node[j].weight3 * a[2] + node[j].weight4 * a[3] + node[j].weight5 * a[4];
 			b[j]=in_[j];
 		}
 		for (int p = 0;p < 3;p = p + 1)
 		{
 			suma = suma + b[p] * node[p].outputweight;
 		}
+
 		float newa = g(suma);
 		float deltaj = gprime(suma) * (inputlayer_.examples[m].output - newa);
+
 		for (int k = 0;k < 3;k = k + 1)
 			deltai[k]=gprime(in_[k])*(node[k].outputweight * deltaj);
 		for (int c = 0;c < 3;c = c + 1)
@@ -233,6 +240,7 @@ void neuronsnetwork::train()
 			node[c].weight2 = node[c].weight2 + alpha *	a[1] * deltai[c];
 			node[c].weight3 = node[c].weight3 + alpha *	a[2] * deltai[c];
 			node[c].weight4 = node[c].weight4 + alpha *	a[3] * deltai[c];
+			node[c].weight5 = node[c].weight5 + alpha *	a[3] * deltai[c];
 
 			node[c].outputweight = node[c].outputweight + b[c] * deltaj;
 		}
@@ -249,9 +257,9 @@ int neuronsnetwork::judge(float number)
 }
 
 
-int neuronsnetwork::run(int i1,int i2, int i3,int i4)
+int neuronsnetwork::run(int i1,int i2, int i3,int i4,int i5)
 {
-	float a[4];
+	float a[5];
 	float in_[3];
 	float b[3];
 
@@ -261,18 +269,26 @@ int neuronsnetwork::run(int i1,int i2, int i3,int i4)
 	a[1] = float(i2);
 	a[2] = float(i3);
 	a[3] = float(i4);
-	//float label = float(inputlayer_.examples[i].output);
+	a[4] = float(i5);
+
+
 	for(int j = 0;j < 3;j++)						//# for the layer 2
 	{
-		in_[j] = a[0] * node[j].weight1 + a[1] * node[j].weight2 + a[2] * node[j].weight3 + a[3] * node[j].weight4;
+		in_[j] = a[0] * node[j].weight1 + a[1] * node[j].weight2 + a[2] * node[j].weight3 + a[3] * node[j].weight4 + a[4] * node[j].weight5;
 		b[j] = g(in_[j]);
 	}
+
+
 	for(int m = 0;m < 3;m++)
 	{
 		suma = suma + b[m] * node[m].outputweight;
 	}
+
+
 	float newa = g(suma);
 	int newlabel = judge (newa);
+
+
 
 	for(int i = 0;i<datasize;i++)
 	{
