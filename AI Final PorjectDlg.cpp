@@ -380,16 +380,13 @@ void CAIFinalPorjectDlg::OnBnClickedButton2()
 		SetDlgItemText(IDC_EDIT13, strText6);
 
 
-	/*	SGmind.inputlayer_.ownx = _ttoi(sgx_);
-		SGmind.inputlayer_.owny = _ttoi(sgy_);
-		SGmind.inputlayer_.time = _ttoi(time_);
-		SGmind.inputlayer_.defenderx = _ttoi(defenderx_);
-		SGmind.inputlayer_.defendery = _ttoi(defendery_);*/
 
-		SGmind.inputlayer_.playervalue = 60;
 
-		int jkl=0;
-		int method = SGmind.run((4 * SGmind.inputlayer_.ownx + SGmind.inputlayer_.owny),(4 * SGmind.inputlayer_.defenderx + SGmind.inputlayer_.defendery),SGmind.inputlayer_.time, SGmind.inputlayer_.playervalue,tactics_value);
+		SGmind.inputlayer_.SGplayervalue = 60;
+		tactics_value = 1;
+
+		//int jkl=0;
+		int method = SGmind.run((4 * SGmind.inputlayer_.ownx + SGmind.inputlayer_.owny),(4 * SGmind.inputlayer_.defenderx + SGmind.inputlayer_.defendery),SGmind.inputlayer_.time, SGmind.inputlayer_.SGplayervalue,tactics_value);
 		CString strText = _T("");
 		strText.Format(_T("%d"), method);
 		SetDlgItemText(IDC_EDIT17, strText);
@@ -403,10 +400,10 @@ void CAIFinalPorjectDlg::OnBnClickedButton2()
 				attackerscore = attackerscore + 2;
 
 		}
-		else
-		{
-				jkl  = jkl +1;
-		}
+		//else
+		//{
+		//		jkl  = jkl +1;
+		//}
 	}	
 	CString strText = _T("");
 	strText.Format(_T("%d"), attackerscore);
@@ -444,6 +441,5 @@ void CAIFinalPorjectDlg::OnLvnColumnclickList1(NMHDR *pNMHDR, LRESULT *pResult)
 	str = Tactics_input_.GetItemText(nId,0); 
 	//str=Tactics_input_.GetItemText(nId,1); 
 	tactics_value =  _ttoi(str);
-
 	*pResult = 0;
 }

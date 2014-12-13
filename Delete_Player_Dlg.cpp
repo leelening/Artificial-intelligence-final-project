@@ -51,7 +51,79 @@ BOOL Delete_Player_Dlg::OnInitDialog()
 
 
 BEGIN_MESSAGE_MAP(Delete_Player_Dlg, CDialogEx)
+//	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST1, &Delete_Player_Dlg::OnLvnItemchangedList1)
+	ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST1, &Delete_Player_Dlg::OnLvnColumnclickList1)
+	ON_BN_CLICKED(IDOK, &Delete_Player_Dlg::OnBnClickedOk)
+	ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST2, &Delete_Player_Dlg::OnLvnColumnclickList2)
 END_MESSAGE_MAP()
 
 
 // Delete_Player_Dlg 消息处理程序
+
+
+//void Delete_Player_Dlg::OnLvnItemchangedList1(NMHDR *pNMHDR, LRESULT *pResult)
+//{
+//	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+//	// TODO: 在此添加控件通知处理程序代码
+//
+//
+//	*pResult = 0;
+//}
+int nId;
+int iatttacker = 0;
+
+void Delete_Player_Dlg::OnLvnColumnclickList1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	// TODO: 在此添加控件通知处理程序代码
+
+	CString str; 
+	
+	POSITION pos = attacker_team_list_.GetFirstSelectedItemPosition(); 
+	if(pos==NULL) 
+	{ 
+	MessageBox(_T("请至少选择一项"),_T("错误"),MB_ICONEXCLAMATION); 
+	return; 
+	} 
+	//得到行号，通过POSITION转化 
+	nId=(int)attacker_team_list_.GetNextSelectedItem(pos); 
+
+
+
+	*pResult = 0;
+}
+
+
+void Delete_Player_Dlg::OnBnClickedOk()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	if (iatttacker ==0)
+	{
+		attacker_team_list_.DeleteItem(nId);
+		
+	}
+	else{
+		defender_team_list_.DeleteItem(nId);
+		iatttacker = 0;
+	}
+}
+
+
+void Delete_Player_Dlg::OnLvnColumnclickList2(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	// TODO: 在此添加控件通知处理程序代码
+
+		CString str; 
+	
+	POSITION pos = attacker_team_list_.GetFirstSelectedItemPosition(); 
+	if(pos==NULL) 
+	{ 
+	MessageBox(_T("请至少选择一项"),_T("错误"),MB_ICONEXCLAMATION); 
+	return; 
+	} 
+	//得到行号，通过POSITION转化 
+	nId=(int)attacker_team_list_.GetNextSelectedItem(pos); 
+	iatttacker = 1;
+	*pResult = 0;
+}

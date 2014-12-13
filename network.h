@@ -78,7 +78,14 @@ public:
 
 	int time;
 
-	int playervalue;
+
+
+	int SGplayervalue;
+	int PGplayervalue;
+	int SFplayervalue;
+	int PFplayervalue;
+	int Cplayervalue;
+
 
 	int socreattack;
 
@@ -110,25 +117,27 @@ class neuronsnetwork
 {
 public:
 	inputlayer inputlayer_;
+
+
+
+
+
 	outlayer outlayer_;
-	//int numnodes;
-	//int inputsize;
+
 	int datasize;
-	//float weight[numnodes][inputsize];
-	//float outputweight[numnodes];
+
 	hiddennode node[3];
 
 	int error;
 
 protected:
-	//FILE *fp;
+
 
 public:
 	neuronsnetwork();
 
 	virtual ~neuronsnetwork(){}
 
-	//char *ReadData(FILE *fp, char *buf);
 
 	void readfile(char *filename);
 

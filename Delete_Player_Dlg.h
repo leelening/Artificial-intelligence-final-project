@@ -23,4 +23,8 @@ public:
 	afx_msg BOOL  OnInitDialog();
 	CListCtrl attacker_team_list_;
 	CListCtrl defender_team_list_;
+//	afx_msg void OnLvnItemchangedList1(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnLvnColumnclickList1(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnLvnColumnclickList2(NMHDR *pNMHDR, LRESULT *pResult);
 };
